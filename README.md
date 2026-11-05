@@ -1,58 +1,362 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Projeto Aplicado: Práticas de Mercado
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Autor
 
-## About Laravel
+**Bruno Braga**  
+**E-mail Institucional:** bruno.braga@uab.uncisal.edu.br
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Descrição do Projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Este projeto foi desenvolvido para a disciplina **Projeto Aplicado: Práticas de Mercado**, com o objetivo de implementar uma aplicação Web segura utilizando computação em nuvem, práticas de DevOps, versionamento de código e mecanismos básicos de segurança da informação.
 
-## Learning Laravel
+O sistema foi desenvolvido utilizando o framework Laravel e implantado em uma infraestrutura Cloud AWS, atendendo aos requisitos definidos no escopo da disciplina.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Ambiente de Produção
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Aplicação
 
-## Agentic Development
+**URL do Sistema**
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+https://brunopos.duckdns.org
 
-```bash
-composer require laravel/boost --dev
+## Repositório GitHub
 
-php artisan boost:install
+https://github.com/BrunoBragaPos/projeto-praticas-mercado
+
+---
+
+# Tecnologias Utilizadas
+
+## Infraestrutura
+
+- AWS EC2
+- Ubuntu Server
+- Nginx
+- PHP 8.5
+- MariaDB
+- Certbot
+- Let's Encrypt
+- DuckDNS
+- Fail2Ban
+
+## Desenvolvimento
+
+- Laravel
+- Laravel Breeze
+- Blade Templates
+- Vite
+- Composer
+- NodeJS
+
+## DevOps
+
+- Git
+- GitHub
+- GitHub Actions
+- CI/CD
+- Deploy Automatizado
+
+---
+
+# Funcionalidades Implementadas
+
+## Login
+
+O sistema possui autenticação de usuários utilizando Laravel Breeze.
+
+## Dashboard
+
+Após autenticação, o usuário é direcionado para uma área restrita protegida por middleware de autenticação.
+
+## Logout
+
+O usuário pode encerrar sua sessão de forma segura utilizando o recurso de logout.
+
+---
+
+# Arquitetura da Solução
+
+```text
+Internet
+    │
+    ▼
+brunopos.duckdns.org
+    │
+    ▼
+HTTPS
+(Let's Encrypt)
+    │
+    ▼
+Nginx
+    │
+    ▼
+PHP 8.5
+    │
+    ▼
+Laravel
+    │
+ ┌──┴──────┐
+ │         │
+ ▼         ▼
+MariaDB   Sessões
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+# Infraestrutura Implantada
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Servidor
 
-## Code of Conduct
+- AWS EC2
+- Ubuntu Server
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## DNS
 
-## Security Vulnerabilities
+Domínio configurado utilizando DuckDNS.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```text
+brunopos.duckdns.org
+```
 
-## License
+## HTTPS
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Foi implementado certificado SSL/TLS utilizando Let's Encrypt.
+
+Todos os acessos HTTP são automaticamente redirecionados para HTTPS.
+
+Exemplo:
+
+```text
+http://brunopos.duckdns.org
+            ↓
+https://brunopos.duckdns.org
+```
+
+---
+
+# Segurança Implementada
+
+## SSH por Chave
+
+O acesso administrativo ao servidor é realizado utilizando autenticação por chave SSH.
+
+Não são utilizadas senhas para administração da instância.
+
+---
+
+## Fail2Ban
+
+Foi configurado o Fail2Ban para proteção contra ataques de força bruta na porta SSH.
+
+Configuração aplicada:
+
+```text
+Máximo de tentativas: 4
+Tempo de bloqueio: 24 horas
+```
+
+---
+
+## HTTPS Obrigatório
+
+Toda comunicação entre cliente e servidor ocorre utilizando criptografia TLS.
+
+---
+
+## Proteção de Sessão
+
+As rotas protegidas utilizam middleware nativo do Laravel.
+
+Usuários não autenticados são redirecionados automaticamente para a página de login.
+
+---
+
+# Versionamento de Código
+
+O projeto utiliza Git para gerenciamento e controle de versões.
+
+Principais práticas adotadas:
+
+- Repositório público no GitHub
+- Histórico de commits
+- Controle de alterações
+- Rastreamento de versões
+
+---
+
+# Integração Contínua e Entrega Contínua (CI/CD)
+
+Foi implementada uma pipeline automática utilizando GitHub Actions.
+
+Fluxo de funcionamento:
+
+```text
+Desenvolvedor
+      │
+      ▼
+Git Commit
+      │
+      ▼
+Git Push
+      │
+      ▼
+GitHub
+      │
+      ▼
+GitHub Actions
+      │
+      ▼
+Deploy Automático
+      │
+      ▼
+AWS EC2
+```
+
+A cada alteração enviada para a branch principal do projeto, o processo de deploy é executado automaticamente.
+
+---
+
+# OWASP Top 10
+
+Durante o desenvolvimento foram implementadas medidas para mitigar vulnerabilidades previstas pela OWASP Top 10.
+
+## A01 - Broken Access Control
+
+Proteção de acesso às funcionalidades internas do sistema.
+
+Implementação:
+
+- Middleware de autenticação.
+- Dashboard acessível apenas após login.
+
+---
+
+## A02 - Cryptographic Failures
+
+Proteção contra falhas criptográficas.
+
+Implementação:
+
+- HTTPS obrigatório.
+- Certificado SSL/TLS válido.
+- Comunicação criptografada.
+
+---
+
+## A07 - Identification and Authentication Failures
+
+Proteção dos mecanismos de autenticação.
+
+Implementação:
+
+- Laravel Breeze.
+- Gestão de sessões.
+- Logout seguro.
+- Senhas armazenadas utilizando hash BCrypt.
+- Proteção CSRF nativa do Laravel.
+
+---
+
+# Estrutura do Projeto
+
+```text
+app/
+bootstrap/
+config/
+database/
+public/
+resources/
+routes/
+storage/
+tests/
+
+artisan
+composer.json
+composer.lock
+package.json
+vite.config.js
+```
+
+---
+
+# Boas Práticas Aplicadas
+
+- Infraestrutura em Cloud AWS
+- HTTPS obrigatório
+- Certificado SSL válido
+- Bloqueio de força bruta com Fail2Ban
+- Controle de acesso
+- Proteção CSRF
+- Deploy automatizado
+- Versionamento Git
+- Repositório GitHub
+- Utilização de .gitignore
+- Exclusão de credenciais do repositório
+
+---
+
+# Evidências de Implementação
+
+## Infraestrutura
+
+✅ AWS EC2
+
+✅ Ubuntu Server
+
+✅ Swap configurada
+
+✅ Nginx
+
+✅ PHP 8.5
+
+✅ MariaDB
+
+✅ HTTPS
+
+✅ Certbot
+
+✅ DuckDNS
+
+✅ Fail2Ban
+
+---
+
+## Aplicação
+
+✅ Laravel
+
+✅ Login
+
+✅ Dashboard
+
+✅ Logout
+
+✅ Middleware Auth
+
+✅ Proteção CSRF
+
+---
+
+## DevOps
+
+✅ Git
+
+✅ GitHub
+
+✅ GitHub Actions
+
+✅ Deploy Automático
+
+✅ CI/CD
+
+---
+
+# Conclusão
+
+O projeto atende aos requisitos da disciplina Projeto Aplicado: Práticas de Mercado, contemplando infraestrutura em nuvem, autenticação de usuários, comunicação segura via HTTPS, proteção da camada de acesso ao servidor, versionamento de código e pipeline automatizada de integração e entrega contínua.
+
+A solução desenvolvida segue princípios amplamente utilizados pelo mercado de tecnologia, demonstrando a aplicação prática de conceitos relacionados à computação em nuvem, DevOps, desenvolvimento Web e segurança da informação.
